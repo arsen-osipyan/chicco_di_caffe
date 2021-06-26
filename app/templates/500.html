@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <div class="row">
+        <div class="col-sm-8">
+            <h2 class="display-2">Произошло что-то неожиданное!</h2>
+            <p>Не парься, админы скоро узнают.</p>
+            <br>
+            <p><a href="{{ url_for('index') }}" class="btn btn-outline-secondary">Назад</a></p>
+        </div>
+        <div class="col-sm-4">
+            <img src="{{ url_for( 'static', filename='img/error_anime.png', v=1)}}" class="img-fluid" alt="anime">
+        </div>
+    </div>
+{% endblock %}

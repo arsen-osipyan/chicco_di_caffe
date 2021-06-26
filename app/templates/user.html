@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+    <h1>
+        {{ user.username }}
+        {% if user.email in ADMIN_EMAILS %}😎{% endif %}
+    </h1>
+    <h6 class="text_muted">{{ user.email }}</h6>
+    {% if current_user.username == user.username %}
+    <br>
+    <a href="{{ url_for('editor', type='user', id=user.id) }}" type="button" class="btn btn-primary">Изменить пароль</a>
+    <br>
+    {% endif %}
+    <br>
+    {% if recipes %}
+    <h3>Рецепты, добавленные {{ user.username }}:</h3>
+    <br>
+    <div class="row">
+        {% for recipe in recipes %}
+            {% include 'recipe_card.html' %}
+        {% endfor %}
+    </div>
+    {% endif %}
+{% endblock %}

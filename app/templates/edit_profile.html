@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+    <h1>Изменение пароля:</h1>
+    <br>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            <label for="old_pass" class="form-label">{{ form.old_pass.label }}</label>
+            {{ form.old_pass(class='form-control', id='old_pass') }}
+
+            {% for error in form.old_pass.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            <label for="new_pass" class="form-label">{{ form.new_pass.label }}</label>
+            {{ form.new_pass(class='form-control', id='new_pass') }}
+
+            {% for error in form.new_pass.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <br>
+        <p>{{ form.submit(class='btn btn-primary') }}</p>
+    </form>
+{% endblock %}

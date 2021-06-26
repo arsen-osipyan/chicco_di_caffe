@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <h2 class="display-2">Регистрация</h2>
+    <br>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="row">
+            <div class="col-sm-6">
+                <p>
+                    <label for="username" class="form-label">{{ form.username.label }}</label>
+                    {{ form.username(class='form-control', id='username') }}
+
+                    {% for error in form.username.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+                <p>
+                    <label for="email" class="form-label">{{ form.email.label }}</label>
+                    {{ form.email(class='form-control', id='email') }}
+
+                    {% for error in form.email.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+            </div>
+            <div class="col-sm-6">
+                <p>
+                    <label for="password" class="form-label">{{ form.password.label }}</label>
+                    {{ form.password(class='form-control', id='password') }}
+
+                    {% for error in form.password.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+                <p>
+                    <label for="password" class="form-label">{{ form.password2.label }}</label>
+                    {{ form.password2(class='form-control', id='password2') }}
+
+                    {% for error in form.password2.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+            </div>
+        </div>
+        <br>
+        <p>{{ form.submit(class='btn btn-primary') }}</p>
+    </form>
+    <p>
+        Уже есть аккаунт? <a href="{{ url_for('login') }}">Войдите</a>
+    </p>
+{% endblock %}

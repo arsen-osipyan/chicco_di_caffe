@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if title %}{{ title }} - Chicca di Caffe☕{% else %}Chicca di Caffe☕{% endif %}</title>
+
+    <link rel="shortcut icon" href="{{ url_for( 'static', filename='img/favicon.ico', v=1)}}" type="image/x-icon">
+
+    <link rel="stylesheet" href="{{ url_for( 'static', filename='libs/bootstrap.min.css', v=1)}}">
+    <link rel="stylesheet" href="{{ url_for( 'static', filename='libs/bootstrap-grid.min.css', v=1)}}">
+    <link rel="stylesheet" href="{{ url_for( 'static', filename='libs/bootstrap-grid.rtl.min.css', v=1)}}">
+    <link rel="stylesheet" href="{{ url_for( 'static', filename='libs/bootstrap-reboot.min.css', v=1)}}">
+    <link rel="stylesheet" href="{{ url_for( 'static', filename='libs/bootstrap-reboot.rtl.min.css', v=1)}}">
+    <link rel="stylesheet" href="{{ url_for( 'static', filename='libs/bootstrap-utilities.min.css', v=1)}}">
+    <link rel="stylesheet" href="{{ url_for( 'static', filename='libs/bootstrap-utilities.rtl.min.css', v=1)}}">
+    <script src="{{ url_for( 'static', filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{ url_for( 'static', filename='js/bootstrap.esm.min.js')}}"></script>
+    <script src="{{ url_for( 'static', filename='js/bootstrap.bundle.min.js')}}"></script>
+</head>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('index') }}">☕ Chicca di Caffe</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}"><strong>Главная</strong></a>
+                    </li>
+                    {% if current_user.is_anonymous %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('login') }}"><strong>Войти</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('register') }}"><strong>Зарегистрироваться</strong></a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('new_recipe') }}"><strong>Новый рецепт</strong></a>
+                    </li>
+                    {% if current_user.email in ADMIN_EMAILS %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('new_sort') }}"><strong>Новый сорт</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('database') }}"><strong>База данных</strong></a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('user', user_id=current_user.id) }}"><strong>Профиль</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('logout') }}"><strong>Выйти</strong></a>
+                    </li>
+                    {% endif %}
+                </ul>
+<!--                <form class="d-flex">-->
+<!--                    <input class="form-control me-2" type="search" aria-label="Search">-->
+<!--                    <button class="btn btn-outline-success" type="submit">Найти</button>-->
+<!--                </form>-->
+            </div>
+        </div>
+    </nav>
+    <br>
+
+{% block content %}
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        {# application content needs to be provided in the app_content block #}
+        {% block app_content %}{% endblock %}
+    </div>
+{% endblock %}
+    <br>
+
+{% block scripts %}
+    {{ moment.include_moment() }}
+    {{ moment.lang('ru') }}
+{% endblock %}
+</html>
+
+
+

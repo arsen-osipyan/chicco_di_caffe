@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <div class="row">
+        <div class="col-sm-8">
+            <h2 class="display-2">Ууупс! Страница не найдена!</h2>
+            <br>
+            <p><a href="{{ url_for('index') }}" class="btn btn-outline-secondary">Назад</a></p>
+        </div>
+        <div class="col-sm-4">
+            <img src="{{ url_for( 'static', filename='img/error_anime.png', v=1)}}" class="img-fluid" alt="anime">
+        </div>
+    </div>
+{% endblock %}

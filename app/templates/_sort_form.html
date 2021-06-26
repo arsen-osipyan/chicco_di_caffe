@@ -1,0 +1,36 @@
+<form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <div class="row">
+        <div class="col-sm-6">
+            <p>
+                <label for="title" class="form-label">{{ form.title.label }}</label>
+                {{ form.title(class='form-control', id='title') }}
+
+                {% for error in form.title.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <br>
+            <p>
+                <label for="bouquet" class="form-label">{{ form.bouquet.label }}</label>
+                {{ form.bouquet(class='form-control', id='bouquet') }}
+
+                {% for error in form.bouquet.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+        </div>
+        <div class="col-sm-6">
+            <p>
+                <label for="description" class="form-label">{{ form.description.label }}</label>
+                {{ form.description(class='form-control', id='description', style='height: 9rem;') }}
+
+                {% for error in form.description.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+        </div>
+    </div>
+    <br>
+    <p>{{ form.submit(class='btn btn-primary') }}</p>
+</form>

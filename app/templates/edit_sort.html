@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+    <h1>{{ sort.title }}:</h1>
+    <br>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            <label for="bouquet" class="form-label">{{ form.bouquet.label }}</label>
+            {{ form.bouquet(class='form-control', id='bouquet') }}
+        </p>
+        <p>
+            <label for="description" class="form-label">{{ form.description.label }}</label>
+            {{ form.description(class='form-control', id='description', rows="15") }}
+        </p>
+        <br>
+        <p>{{ form.submit(class='btn btn-primary') }}</p>
+    </form>
+{% endblock %}

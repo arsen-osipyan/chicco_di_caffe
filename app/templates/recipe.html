@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <h1>
+        {{recipe.title}}
+        {% if current_user.email in ADMIN_EMAILS or current_user.id == recipe.user_id %}<sup><a href="{{ url_for('editor', type='recipe', id=recipe.id) }}" style="text-decoration: none;">✏</a></sup>{% endif %}
+    </h1>
+    <h6 class="text-muted">by <a href="{{ url_for('user', user_id=user.id) }}">{{user.username}}</a> {{ moment(recipe.timestamp).fromNow() }}</h6>
+
+    <br><br>
+    <div class="row">
+        <div class="col-sm-6">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Сорт кофе:</th>
+                        <td><a href="{{ url_for('sort', sort_id=sort.id) }}">{{ sort.title }}</a></td>
+                    </tr>
+                    <tr>
+                        <th>Масса кофе, г:</th>
+                        <td>{{ recipe.coffee_mass }}</td>
+                    </tr>
+                    <tr>
+                        <th>Масса воды, г:</th>
+                        <td>{{ recipe.water_mass }}</td>
+                    </tr>
+                    <tr>
+                        <th>Температура воды, C:</th>
+                        <td>{{ recipe.water_temp }}</td>
+                    </tr>
+                    <tr>
+                        <th>Помол:</th>
+                        <td>{{ recipe.grinding }}</td>
+                    </tr>
+                    <tr>
+                        <th>Кислотность:</th>
+                        <td>{{ recipe.acidity }}/10</td>
+                    </tr>
+                    <tr>
+                        <th>Насыщенность:</th>
+                        <td>{{ recipe.tds }}/10</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-6">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Рецепт:</th>
+                        <td>{{ recipe.body }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <br><br>
+    <h3>Все рецепты с этим сортом рецепты:</h3>
+    <br>
+    <div class="row">
+        {% for recipe in other %}
+            {% include 'recipe_card.html' %}
+        {% endfor %}
+    </div>
+{% endblock %}

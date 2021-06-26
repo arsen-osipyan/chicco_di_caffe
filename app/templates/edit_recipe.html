@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <h1>{{ recipe.title }}:</h1>
+    <br>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="row">
+            <div class="col-sm-6">
+                <p>
+                    <label for="sort_id" class="form-label">{{ form.sort_id.label }}</label>
+                    {{ form.sort_id(class='form-select', multiple=False, id='sort_id') }}
+
+                    {% for error in form.sort_id.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <p>
+                    <label for="water_temp" class="form-label">{{ form.water_temp.label }}</label>
+                    {{ form.water_temp(class='form-control', id='water_temp') }}
+
+                    {% for error in form.water_temp.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+                <p>
+                    <label for="grinding" class="form-label">{{ form.grinding.label }}</label>
+                    {{ form.grinding(class='form-control', id='grinding') }}
+
+                    {% for error in form.grinding.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+                <p>
+                    <label for="acidity" class="form-label">{{ form.acidity.label }}</label>
+                    {{ form.acidity(type='range', class='form-range', id='acidity', min='0', max='10') }}
+
+                    {% for error in form.acidity.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+            </div>
+            <div class="col-sm-3">
+                <p>
+                    <label for="coffee_mass" class="form-label">{{ form.coffee_mass.label }}</label>
+                    {{ form.coffee_mass(class='form-control', id='coffee_mass') }}
+
+                    {% for error in form.coffee_mass.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+                <p>
+                    <label for="water_mass" class="form-label">{{ form.water_mass.label }}</label>
+                    {{ form.water_mass(class='form-control', id='water_mass') }}
+
+                    {% for error in form.water_mass.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+                <p>
+                    <label for="tds" class="form-label">{{ form.tds.label }}</label>
+                    {{ form.tds(type='range', class='form-range', id='tds', min='0', max='10') }}
+
+                    {% for error in form.tds.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+            </div>
+            <div class="col-sm-6">
+                <p>
+                    <label for="body" class="form-label">{{ form.body.label }}</label>
+                    {{ form.body(style='height: 15rem;', class='form-control', id='body') }}
+                </p>
+            </div>
+        </div>
+
+        <br>
+        <p>{{ form.submit(class='btn btn-primary') }}</p>
+    </form>
+{% endblock %}

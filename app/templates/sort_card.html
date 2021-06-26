@@ -1,0 +1,16 @@
+<div class="col-sm-3">
+<div class="card" style="min-height: 32rem; margin-bottom: 1rem;">
+    <img src="{{ url_for( 'static', filename='img/empty.png', v=1)}}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{ sort.title }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+            добавлен {{ moment(sort.timestamp).fromNow() }}
+        </h6>
+        <p class="card-text">Букет: {{ sort.bouquet }}</p>
+    </div>
+    <div class="card-footer">
+        <a href="{{ url_for('sort', sort_id=sort.id) }}" class="btn btn-outline-primary">Описание</a>
+    </div>
+
+</div>
+</div>

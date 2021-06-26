@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+    <h2 class="display-2">База данных</h2>
+    <br>
+    <h3>Пользователи</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">username</th>
+                <th scope="col">email</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <th scope="row">{{ user.id }}</th>
+                <td><a href="{{ url_for('user', user_id = user.id) }}">{{ user.username }}</a></td>
+                <td>{{ user.email }}</td>
+                <td><a href="{{ url_for('delete_user', user_id=user.id) }}">Delete</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <h3>Сорта</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">title</th>
+                <th scope="col">user_id</th>
+                <th scope="col">timestamp</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sort in sorts %}
+            <tr>
+                <th scope="row">{{ sort.id }}</th>
+                <td><a href="{{ url_for('sort', sort_id = sort.id) }}">{{ sort.title }}</a></td>
+                <td>{{ sort.user_id }}</td>
+                <td>{{ moment(sort.timestamp).format('LL') }}</td>
+                <td><a href="{{ url_for('delete_sort', sort_id=sort.id) }}">Delete</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <h3>Рецепты</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">title</th>
+                <th scope="col">user_id</th>
+                <th scope="col">sort_id</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for recipe in recipes %}
+            <tr>
+                <th scope="row">{{ recipe.id }}</th>
+                <td scope="row"><a href="{{ url_for('recipe', recipe_id = recipe.id) }}">{{ recipe.title }}</a></td>
+                <td>{{ recipe.user_id }}</td>
+                <td>{{ recipe.sort_id }}</td>
+                <td><a href="{{ url_for('delete_recipe', recipe_id=recipe.id) }}">Delete</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

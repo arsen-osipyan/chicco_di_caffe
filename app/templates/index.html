@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <h1 class="display-1">
+        {% if current_user.username %}
+        Сап, {{ current_user.username }}👋
+        {% else %}
+        Привет, гость👋
+        {% endif %}
+    </h1>
+    <br>
+    {% if sorts %}
+    <br>
+    <h2>Новые сорта кофе:</h2>
+    <br>
+    <div class="row">
+        {% for sort in sorts %}
+            {% include 'sort_card.html' %}
+        {% endfor %}
+    </div>
+    <br>
+    {% endif %}
+    {% if recipes %}
+    <br>
+    <h2>Новые рецепты:</h2>
+    <br>
+    <div class="row">
+        {% for recipe in recipes %}
+            {% include 'recipe_card.html' %}
+        {% endfor %}
+    </div>
+    <br>
+    {% endif %}
+{% endblock %}

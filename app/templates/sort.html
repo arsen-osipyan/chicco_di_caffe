@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <h1>
+        {{sort.title}}
+        {% if current_user.email in ADMIN_EMAILS %}<sup><a href="{{ url_for('editor', type='sort', id=sort.id) }}" style="text-decoration: none;">✏</a></sup>{% endif %}
+    </h1>
+    <h6 class="text-muted">by <a href="{{ url_for('user', user_id=user.id) }}">{{user.username}}</a> {{ moment(sort.timestamp).fromNow() }}</h6>
+    <br><br>
+    <div class="row">
+        <div class="col-sm-3">
+            <img src="{{ url_for( 'static', filename='img/empty.png', v=1)}}" class="img-fluid" alt="coffee">
+        </div>
+        <div class="col-sm-9">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Букет:</th>
+                        <td>{{ sort.bouquet }}</td>
+                    </tr>
+                    <tr>
+                        <th>Описание:</th>
+                        <td>{{ sort.description }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br><br>
+    {% if recipes %}
+    <h3>Рецепты с этим сортом:</h3>
+    <br>
+    <div class="row">
+        {% for recipe in recipes %}
+            {% include 'recipe_card.html' %}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+
+{% endblock %}

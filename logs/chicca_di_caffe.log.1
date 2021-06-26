@@ -1,0 +1,74 @@
+2021-06-26 22:51:07,393 ERROR: Exception on /recipe/2 [GET] [in c:\users\arsen\appdata\local\programs\python\python37\lib\site-packages\flask\app.py:1892]
+Traceback (most recent call last):
+  File "c:\users\arsen\appdata\local\programs\python\python37\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\arsen\appdata\local\programs\python\python37\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\arsen\appdata\local\programs\python\python37\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\arsen\appdata\local\programs\python\python37\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\arsen\appdata\local\programs\python\python37\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\arsen\appdata\local\programs\python\python37\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\MIPT\2sem\Python\chicco_di_caffe\app\routes.py", line 120, in recipe
+    return render_template('recipe.html', recipe=r, sort=s, user=u, other=other, ADMIN_EMAILS=Config.ADMINS)
+  File "c:\users\arsen\appdata\local\programs\python\python37\lib\site-packages\flask\templating.py", line 140, in render_template
+    ctx.app,
+  File "c:\users\arsen\appdata\local\programs\python\python37\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "c:\users\arsen\appdata\local\programs\python\python37\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "c:\users\arsen\appdata\local\programs\python\python37\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "c:\users\arsen\appdata\local\programs\python\python37\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\arsen\appdata\local\programs\python\python37\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "D:\MIPT\2sem\Python\chicco_di_caffe\app\templates\recipe.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "c:\users\arsen\appdata\local\programs\python\python37\lib\site-packages\jinja2\environment.py", line 1005, in render
+    return concat(self.root_render_func(self.new_context(vars)))
+  File "D:\MIPT\2sem\Python\chicco_di_caffe\app\templates\recipe.html", line 14, in root
+    <th>Масса кофе, г:</th>
+  File "D:\MIPT\2sem\Python\chicco_di_caffe\app\templates\base.html", line 58, in root
+    <!--                </form>-->
+  File "D:\MIPT\2sem\Python\chicco_di_caffe\app\templates\base.html", line 86, in block_content
+    </html>
+  File "D:\MIPT\2sem\Python\chicco_di_caffe\app\templates\recipe.html", line 43, in block_app_content
+    <br>
+  File "c:\users\arsen\appdata\local\programs\python\python37\lib\site-packages\jinja2\runtime.py", line 262, in call
+    return __obj(*args, **kwargs)
+  File "c:\users\arsen\appdata\local\programs\python\python37\lib\site-packages\jinja2\runtime.py", line 630, in _fail_with_undefined_error
+    raise self._undefined_exception(hint)
+jinja2.exceptions.UndefinedError: 'len' is undefined
+2021-06-26 22:51:34,093 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-26 22:52:17,081 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-26 22:52:33,148 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-26 22:53:27,702 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-26 22:55:19,718 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-26 22:56:19,404 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-26 22:56:54,351 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-26 22:58:17,605 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-26 23:01:37,088 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-26 23:02:02,072 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-26 23:02:17,252 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-26 23:03:39,419 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-26 23:07:11,050 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-26 23:08:40,165 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-26 23:21:19,105 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-27 01:12:40,753 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-27 01:21:47,119 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-27 01:22:47,739 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-27 01:24:35,014 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-27 01:25:34,484 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-27 01:25:56,255 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-27 01:26:14,754 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-27 01:28:50,996 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-27 01:35:35,526 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-27 01:37:34,588 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-27 01:38:41,930 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-27 01:39:50,053 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-27 01:40:31,241 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]
+2021-06-27 01:42:18,731 INFO: Chicca di Coffe startup [in D:\MIPT\2sem\Python\chicco_di_caffe\app\__init__.py:48]

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <h2 class="display-2">Вход</h2>
+    <br>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="row">
+            <div class="col-sm-6">
+                <p>
+                    <label for="username" class="form-label">{{ form.username.label }}</label>
+                    {{ form.username(class='form-control', id='username') }}
+
+                    {% for error in form.username.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+                <p>
+                    <label for="password" class="form-label">{{ form.password.label }}</label>
+                    {{ form.password(class='form-control', id='password') }}
+
+                    {% for error in form.password.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.remember_me(class='form-checkbox-input', id='remember_me') }}
+                    <label class="form-check-label" for="remember_me">{{ form.remember_me.label }}</label>
+                </p>
+            </div>
+        </div>
+        <br>
+        <p>{{ form.submit(class='btn btn-primary') }}</p>
+    </form>
+    <p>
+        Нет аккаунта? <a href="{{ url_for('register') }}">Зарегистрируйтесь</a>
+    </p>
+{% endblock %}
