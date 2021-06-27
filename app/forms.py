@@ -68,7 +68,6 @@ class EditSort(FlaskForm):
             raise ValidationError("Такой сорт уже зарегистрирован")
 
 
-
 class EditRecipe(FlaskForm):
     sort_id = SelectField("Выберите название кофе:", validators=[DataRequired(EMPTY_FIELD)],
                           choices=Sort.query.all())
@@ -80,6 +79,7 @@ class EditRecipe(FlaskForm):
     grinding = DecimalField("Помол:", validators=[DataRequired(EMPTY_FIELD)])
     body = TextAreaField("Шаги", validators=[DataRequired(EMPTY_FIELD)])
     submit = SubmitField("Подтвердить")
+
 
 class EditProfile(FlaskForm):
     new_pass = PasswordField('Новый пароль:', validators=[DataRequired(EMPTY_FIELD)])
