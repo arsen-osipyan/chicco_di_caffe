@@ -61,6 +61,7 @@ def register():
 @login_required
 def new_sort():
     if current_user.email not in app.config["ADMINS"]:
+        flash('[ACCESS DENIED]')
         return redirect(url_for('index'))
     form = SortForm()
     if form.validate_on_submit():
@@ -125,7 +126,8 @@ def recipe(recipe_id):
 @login_required
 def database():
     if current_user.email not in app.config["ADMINS"]:
-        redirect(url_for('index'))
+        flash('[ACCESS DENIED]')
+        return redirect(url_for('index'))
     else:
         users = User.query.all()
         recipes = Recipe.query.all()
@@ -137,7 +139,8 @@ def database():
 @login_required
 def delete_user(user_id):
     if current_user.email not in app.config["ADMINS"]:
-        redirect(url_for('index'))
+        flash('[ACCESS DENIED]')
+        return redirect(url_for('index'))
     user = User.query.filter_by(id=user_id).first()
     for sort in Sort.query.filter_by(user_id=user.id).all():
         db.session.delete(sort)
@@ -154,12 +157,15 @@ def delete_user(user_id):
 @app.route('/delete_recipe/<recipe_id>')
 @login_required
 def delete_recipe(recipe_id):
-    if current_user.email not in app.config["ADMINS"]:
-        return redirect(url_for('index'))
     recipe = Recipe.query.filter_by(id=recipe_id).first()
+    if current_user.email not in app.config["ADMINS"] and current_user.id != recipe.user_id:
+        flash('[ACCESS DENIED]')
+        return redirect(url_for('index'))
     flash('Рецепт \"{}\" (id: {}) удален'.format(recipe.title, recipe.id))
     db.session.delete(recipe)
     db.session.commit()
+    if current_user.id == recipe.user_id:
+        return redirect(url_for('user', user_id = current_user.id))
     return redirect(url_for('database'))
 
 
@@ -167,6 +173,7 @@ def delete_recipe(recipe_id):
 @login_required
 def delete_sort(sort_id):
     if current_user.email not in app.config["ADMINS"]:
+        flash('[ACCESS DENIED]')
         return redirect(url_for('index'))
     sort = Sort.query.filter_by(id=sort_id).first()
     for recipe in Recipe.query.filter_by(sort_id=sort.id).all():
@@ -182,6 +189,9 @@ def delete_sort(sort_id):
 @login_required
 def editor(type, id):
     if type == 'sort':
+        if not current_user.email in Config.ADMINS:
+            flash('[ACCESS DENIED]')
+            return redirect(url_for('index'))
         form = EditSort()
         s = Sort.query.filter_by(id=id).first()
         if form.validate_on_submit():
@@ -196,6 +206,9 @@ def editor(type, id):
     elif type == 'recipe':
         form = EditRecipe()
         r = Recipe.query.filter_by(id=id).first()
+        if current_user.id != r.user_id:
+            flash('[ACCESS DENIED]')
+            return redirect(url_for('recipe', recipe_id = r.id))
         if form.validate_on_submit():
             r.sort_id = Sort.query.filter_by(title=form.sort_id.data).first().id
             r.coffee_mass = form.coffee_mass.data

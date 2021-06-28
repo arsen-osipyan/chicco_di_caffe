@@ -3,7 +3,10 @@
 {% block app_content %}
     <h1>
         {{recipe.title}}
-        {% if current_user.email in ADMIN_EMAILS or current_user.id == recipe.user_id %}<sup><a href="{{ url_for('editor', type='recipe', id=recipe.id) }}" style="text-decoration: none;">✏</a></sup>{% endif %}
+        {% if current_user.email in ADMIN_EMAILS or current_user.id == recipe.user_id %}
+            <sup><a href="{{ url_for('editor', type='recipe', id=recipe.id) }}" style="text-decoration: none;">✏</a></sup>
+            <sup><a href="{{ url_for('delete_recipe', recipe_id = recipe.id) }}" style="text-decoration: none;">🗑</a></sup>
+        {% endif %}
     </h1>
     <h6 class="text-muted">by <a href="{{ url_for('user', user_id=user.id) }}">{{user.username}}</a> {{ moment(recipe.timestamp).fromNow() }}</h6>
 
